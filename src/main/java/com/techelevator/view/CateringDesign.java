@@ -55,6 +55,8 @@ package com.techelevator.view;public @interface CateringDesign {
 //        ------
 //
 //    Class Transaction- shopping cart
+//
+//
 //    double currentBalance,
 //
 //

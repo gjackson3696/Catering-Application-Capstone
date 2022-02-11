@@ -9,11 +9,13 @@ import java.util.Scanner;
 
 public class FileReader {
 
-    public Map<String, CateringItem> populateMap() {
+    public static Map<String, CateringItem> populateMap() {
         File file = new File("cateringsystem.csv");
+
+        Map<String, CateringItem> productInventory= new HashMap<>();
         try(Scanner menuScanner=new Scanner(file);){
 
-            Map<String, CateringItem> productInventory= new HashMap<>();
+
             while(menuScanner.hasNextLine()) {
                 String[] inventoryInput = menuScanner.nextLine().split("|");
                 switch (inventoryInput[0]) {
@@ -41,7 +43,7 @@ public class FileReader {
             System.out.println("File not Found");
         }
 
-        return null;
+        return productInventory;
     }
 
 
