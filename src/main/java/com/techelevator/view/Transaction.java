@@ -61,7 +61,7 @@ public class Transaction {
             CateringItem item = inventory.getProductByCode(productCode);
             receipt.add(shoppingCart.get(productCode) + "," + item.getType() + "," + item.getName() + "," + item.getPrice() + "," + (item.getPrice()*shoppingCart.get(productCode)) + "," + item.getReminder());
         }
-        receipt.add("Total: $" + this.totalCost);
+        receipt.add(String.format("Total: $%.2f",this.totalCost));
         receipt.add(getChangeString());
         return receipt;
     }
