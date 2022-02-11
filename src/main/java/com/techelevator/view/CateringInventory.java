@@ -1,6 +1,8 @@
 package com.techelevator.view;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class CateringInventory {
@@ -15,5 +17,13 @@ public class CateringInventory {
         String[] sortedCodes = cateringInventory.keySet().toArray(new String[1]);
         Arrays.sort(sortedCodes);
         return sortedCodes;
+    }
+
+    public List<CateringItem> getCateringItems() {
+        List<CateringItem> itemList = new ArrayList<>();
+        for(CateringItem item : cateringInventory.values()) {
+            itemList.add(item);
+        }
+        return itemList;
     }
 }

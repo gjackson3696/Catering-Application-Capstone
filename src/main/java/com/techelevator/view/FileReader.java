@@ -17,7 +17,7 @@ public class FileReader {
 
 
             while(menuScanner.hasNextLine()) {
-                String[] inventoryInput = menuScanner.nextLine().split("|");
+                String[] inventoryInput = menuScanner.nextLine().split("\\|");
                 switch (inventoryInput[0]) {
                     case "A":
                         Appetizer appetizer = new Appetizer(inventoryInput[1], inventoryInput[2], Double.parseDouble(inventoryInput[3]));

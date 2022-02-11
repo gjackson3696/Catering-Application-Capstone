@@ -40,5 +40,13 @@ public abstract class CateringItem {
         }
     }
 
+    public String menuString() {
+        if(this.quantity!=0) {
+            return String.format(" %-10s%-25s%-10d$%.2f",this.productCode,this.name,this.quantity,this.price);
+        } else {
+            return String.format(" %-10s%-25s%-10s$%.2f",this.productCode,this.name,"SOLD OUT",this.price);
+        }
+    }
+
     public abstract String getReminder();
 }
