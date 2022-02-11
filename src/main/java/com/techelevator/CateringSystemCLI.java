@@ -1,6 +1,8 @@
 package com.techelevator;
 
 
+import com.techelevator.view.UserInterface;
+
 public class CateringSystemCLI {
 
 
@@ -13,8 +15,10 @@ public class CateringSystemCLI {
 	
 	
 	public void run() {
-		//probably should do stuff here... ;-)
-
+		UserInterface ui = new UserInterface();
+		while(ui.isRunning()) {
+			ui.displayMainMenu();
+		}
 	}
 	
 	

@@ -21,6 +21,10 @@ public class Transaction {
         acceptableDollarValues.add(100);
     }
 
+    public double getCurrentBalance() {
+        return currentBalance;
+    }
+
     public double addMoney(int dollarAmountInput) throws InvalidDollarAmountException, ExceedsMaximumTransactionException {
         if(!acceptableDollarValues.contains(dollarAmountInput)) {
             throw new InvalidDollarAmountException();
