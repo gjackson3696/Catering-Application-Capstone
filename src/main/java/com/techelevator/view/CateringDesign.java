@@ -51,13 +51,18 @@ package com.techelevator.view;public @interface CateringDesign {
 //    returns sortedArray
 //    Populate the Map in the constructor using Scanner on File delimited by |
 //
-//    reutrns newpoulatedmap
+//    reutrns newpopulatedmap
 //        ------
 //
 //    Class Transaction- shopping cart
-//
+//    input accepts payments of value
 //
 //    double currentBalance,
+//
+//    addMoney method
+//    productSelection method
+//    completeTransaction method
+//
 //
 //
 //        -----
