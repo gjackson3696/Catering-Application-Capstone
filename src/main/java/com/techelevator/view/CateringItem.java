@@ -1,5 +1,8 @@
 package com.techelevator.view;
 
+import com.techelevator.view.exceptions.InsufficientStockException;
+import com.techelevator.view.exceptions.OutOfStockException;
+
 public abstract class CateringItem {
     private String productCode, name;
     private double price;
@@ -27,11 +30,11 @@ public abstract class CateringItem {
         return quantity;
     }
 
-    public void decreaseQuantity(int numPurchased) {
+    public void decreaseQuantity(int numPurchased) throws OutOfStockException, InsufficientStockException {
         if(quantity==0) {
-            System.out.println("Out of stock!");
+            throw new OutOfStockException();
         } else if(numPurchased>quantity) {
-            System.out.println("Insufficient stock!");
+            throw new InsufficientStockException();
         } else {
             quantity -= numPurchased;
         }
