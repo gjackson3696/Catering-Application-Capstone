@@ -1,10 +1,13 @@
 package com.techelevator.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface{
     private CateringInventory inventory;
     private Scanner userInput;
+    private Transaction transaction;
     private boolean isRunning = true, transactionRunning;
 
     public UserInterface() {
@@ -33,9 +36,9 @@ public class UserInterface{
                 break;
             case 2:
                 this.transactionRunning = true;
-                Transaction newTransaction = new Transaction();
+                transaction = new Transaction();
                 while(transactionRunning) {
-                    this.orderMenu(newTransaction);
+                    this.orderMenu(transaction);
                 }
                 break;
             case 3:
@@ -88,7 +91,25 @@ public class UserInterface{
                 break;
             case 3:
                 this.transactionRunning = false;
+                displayReceipt(transaction.completeTransaction(inventory));
                 break;
+        }
+    }
+
+    private void displayReceipt(List<String> receipt) {
+        String[] receiptValues = receipt.toArray(new String[0]);
+        for(String s: receiptValues) {
+            String[] line = s.split(",");
+            try{
+                Integer.parseInt(line[0]);
+                System.out.println(String.format("%-5s%-10s%-25s$%-10.2f$%-5.2f  %5s",line[0],line[1],line[2],Double.parseDouble(line[3]),Double.parseDouble(line[4]),line[5]));
+            } catch(NumberFormatException ex) {
+                if(line[0].equals("Total")) {
+                    System.out.println("Total: $" + line[1]);
+                } else {
+                    System.out.println(s);
+                }
+            }
         }
     }
 

@@ -7,7 +7,10 @@ import java.util.Map;
 
 public class CateringInventory {
     private Map<String, CateringItem> cateringInventory;
+    private double totalSales;
+
     public CateringInventory(){
+        totalSales = 0;
         cateringInventory=FileReader.populateMap();
     }
     public CateringItem getProductByCode(String productCode){
@@ -25,5 +28,13 @@ public class CateringInventory {
             itemList.add(item);
         }
         return itemList;
+    }
+
+    public double getTotalSales() {
+        return totalSales;
+    }
+
+    public void addSale(double sale) {
+        this.totalSales += sale;
     }
 }

@@ -9,4 +9,9 @@ public class Entree extends CateringItem{
     public String getReminder() {
         return "Did you remember Dessert?";
     }
+
+    @Override
+    public String getType() {
+        return "Entree";
+    }
 }

@@ -9,4 +9,9 @@ public class Dessert extends CateringItem{
     public String getReminder() {
         return "Coffee goes with dessert.";
     }
+
+    @Override
+    public String getType() {
+        return "Dessert";
+    }
 }

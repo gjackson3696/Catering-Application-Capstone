@@ -49,4 +49,5 @@ public abstract class CateringItem {
     }
 
     public abstract String getReminder();
+    public abstract String getType();
 }

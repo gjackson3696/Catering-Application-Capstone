@@ -9,4 +9,9 @@ public class Appetizer extends CateringItem{
     public String getReminder() {
         return "You might need extra plates.";
     }
+
+    @Override
+    public String getType() {
+        return "Appetizer";
+    }
 }

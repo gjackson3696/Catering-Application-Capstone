@@ -9,4 +9,9 @@ public class Beverage extends CateringItem{
     public String getReminder() {
         return "Don't Forget Ice.";
     }
+
+    @Override
+    public String getType() {
+        return "Beverage";
+    }
 }
