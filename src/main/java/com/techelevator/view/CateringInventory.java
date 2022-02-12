@@ -17,16 +17,13 @@ public class CateringInventory {
         return cateringInventory.get(productCode);
     }
     public String[] getSortedCodes(){
-        String[] sortedCodes = cateringInventory.keySet().toArray(new String[1]);
+        String[] sortedCodes = cateringInventory.keySet().toArray(new String[0]);
         Arrays.sort(sortedCodes);
         return sortedCodes;
     }
 
     public List<CateringItem> getCateringItems() {
-        List<CateringItem> itemList = new ArrayList<>();
-        for(CateringItem item : cateringInventory.values()) {
-            itemList.add(item);
-        }
+        List<CateringItem> itemList = new ArrayList<>(cateringInventory.values());
         return itemList;
     }
 

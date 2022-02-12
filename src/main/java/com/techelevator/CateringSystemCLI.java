@@ -1,6 +1,5 @@
 package com.techelevator;
 
-
 import com.techelevator.view.UserInterface;
 
 public class CateringSystemCLI {

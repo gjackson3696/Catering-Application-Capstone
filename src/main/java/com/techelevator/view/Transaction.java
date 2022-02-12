@@ -6,10 +6,12 @@ import java.util.*;
 
 public class Transaction {
     private double currentBalance, totalCost;
-    List<Integer> acceptableDollarValues;
-    Map<String,Integer> shoppingCart;
+    private List<Integer> acceptableDollarValues;
+    private Map<String,Integer> shoppingCart;
+    private LogWriter transactionLog;
 
     public Transaction(){
+        transactionLog=new LogWriter();
         currentBalance=0;
         totalCost=0;
         acceptableDollarValues = new ArrayList<>();
@@ -33,7 +35,9 @@ public class Transaction {
         if(currentBalance+dollarAmountInput>1500) {
             throw new ExceedsMaximumTransactionException();
         }
-        return currentBalance+=dollarAmountInput;
+        currentBalance+=dollarAmountInput;
+        transactionLog.addActionToLog(String.format("ADD MONEY: $%.2f $%.2f",(double)dollarAmountInput,currentBalance));
+        return currentBalance;
     }
 
     public void productSelection(CateringInventory inventory, String productCode,int numToPurchase) throws InvalidProductCodeException, InsufficientBalanceException, OutOfStockException, InsufficientStockException {
@@ -45,18 +49,21 @@ public class Transaction {
             throw new InsufficientBalanceException();
         }
         item.decreaseQuantity(numToPurchase);
-        this.currentBalance -= item.getPrice()*numToPurchase;
-        this.totalCost += item.getPrice()*numToPurchase;
+        double itemCost = item.getPrice()*numToPurchase;
+        this.currentBalance -= itemCost;
+        this.totalCost += itemCost;
         if(shoppingCart.containsKey(productCode)) {
             shoppingCart.replace(productCode,shoppingCart.get(productCode) + numToPurchase);
         } else {
             shoppingCart.put(productCode,numToPurchase);
         }
+        inventory.addSale(itemCost);
+        transactionLog.addActionToLog(String.format("%d %s %s $%.2f $%.2f",numToPurchase,item.getName(),productCode,itemCost,currentBalance));
     }
 
     public List<String> completeTransaction(CateringInventory inventory) {
+        transactionLog.addActionToLog(String.format("GIVE CHANGE: $%.2f $0.00",currentBalance));
         List<String> receipt = new ArrayList<>();
-
         for(String productCode : shoppingCart.keySet()) {
             CateringItem item = inventory.getProductByCode(productCode);
             receipt.add(shoppingCart.get(productCode) + "," + item.getType() + "," + item.getName() + "," + item.getPrice() + "," + (item.getPrice()*shoppingCart.get(productCode)) + "," + item.getReminder());
@@ -65,6 +72,7 @@ public class Transaction {
         receipt.add(getChangeString());
         return receipt;
     }
+
     private int[] getChange() {
         int[] change = new int[8];
         change[0] = (int)(currentBalance/50);
