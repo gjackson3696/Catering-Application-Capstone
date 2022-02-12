@@ -45,9 +45,4 @@ public class CateringItemTest {
             Assert.assertEquals("Insufficient Stock!",e.getMessage());
         }
     }
-
-    @Test
-    public void testMenuString() {
-
-    }
 }

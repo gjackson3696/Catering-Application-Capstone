@@ -1,6 +1,7 @@
 package com.techelevator.view;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,9 +26,13 @@ public class UserInterface{
         System.out.println("(2) Order");
         System.out.println("(3) Quit");
         System.out.println();
-        int choice = userInput.nextInt();
-        while(choice<1 && choice>3) {
-            choice = userInput.nextInt();
+        int choice = 0;
+        try {
+            while (choice < 1 || choice > 3) {
+                choice = userInput.nextInt();
+            }
+        } catch(Exception e) {
+            System.out.println("Please choose a valid input.");
         }
         switch(choice) {
             case 1:
@@ -45,6 +50,7 @@ public class UserInterface{
                 this.quit();
                 break;
         }
+        userInput.nextLine();
     }
 
     private void displayCateringItems() {
@@ -60,9 +66,12 @@ public class UserInterface{
         System.out.println("(3) Complete Transaction");
         System.out.println(String.format("Current Account Balance: $%.2f",transaction.getCurrentBalance()));
         System.out.println();
-        int choice = userInput.nextInt();
-        while(choice<1 && choice>3) {
+        int choice = 0;
+        try {
+            userInput.nextLine();
             choice = userInput.nextInt();
+        } catch(Exception e) {
+            System.out.println("Please choose a valid input.");
         }
         switch(choice) {
             case 1:

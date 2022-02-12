@@ -28,6 +28,10 @@ public class Transaction {
         return currentBalance;
     }
 
+    public double getTotalCost() {
+        return totalCost;
+    }
+
     public double addMoney(int dollarAmountInput) throws InvalidDollarAmountException, ExceedsMaximumTransactionException {
         if(!acceptableDollarValues.contains(dollarAmountInput)) {
             throw new InvalidDollarAmountException();
@@ -138,6 +142,7 @@ public class Transaction {
                 switch(i) {
                     case 0:
                         middleString += "(" + change[0] + ") Fifties, ";
+                        break;
                     case 1:
                         middleString += "(" + change[1] + ") Twenties, ";
                         break;
