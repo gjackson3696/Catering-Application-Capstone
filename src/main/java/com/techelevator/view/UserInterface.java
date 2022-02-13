@@ -30,6 +30,9 @@ public class UserInterface{
         try {
             while (choice < 1 || choice > 3) {
                 choice = userInput.nextInt();
+                if(choice < 1 || choice > 3) {
+                    System.out.println("Please choose 1, 2 or 3");
+                }
             }
         } catch(Exception e) {
             System.out.println("Please choose a valid input.");
@@ -77,7 +80,12 @@ public class UserInterface{
             case 1:
                 displaySeparator();
                 System.out.println("Please enter a dollar bill value:");
-                int value = userInput.nextInt();
+                int value = 0;
+                try {
+                    value = userInput.nextInt();
+                } catch(Exception ex) {
+                    System.out.println("Please choose a valid input.");
+                }
                 try {
                     transaction.addMoney(value);
                 } catch (Exception ex) {
@@ -91,7 +99,12 @@ public class UserInterface{
                 System.out.println("Please input a product code:");
                 String productCode = userInput.next();
                 System.out.println("Please input a number to order:");
-                int numberToOrder = userInput.nextInt();
+                int numberToOrder = 0;
+                try {
+                    numberToOrder = userInput.nextInt();
+                } catch(Exception ex) {
+                    System.out.println("Please choose a valid input.");
+                }
                 try {
                     transaction.productSelection(inventory,productCode,numberToOrder);
                 } catch (Exception ex) {

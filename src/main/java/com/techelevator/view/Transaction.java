@@ -59,7 +59,9 @@ public class Transaction {
         if(shoppingCart.containsKey(productCode)) {
             shoppingCart.replace(productCode,shoppingCart.get(productCode) + numToPurchase);
         } else {
-            shoppingCart.put(productCode,numToPurchase);
+            if(numToPurchase>0) {
+                shoppingCart.put(productCode, numToPurchase);
+            }
         }
         inventory.addSale(itemCost);
         transactionLog.addActionToLog(String.format("%d %s %s $%.2f $%.2f",numToPurchase,item.getName(),productCode,itemCost,currentBalance));
